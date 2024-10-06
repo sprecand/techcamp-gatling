@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: Open Api Specification
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Gatling Test
+paths:
+  /example:
+    get:
+      operationId: findExampleList
+      description: find all examples
+      responses:
+        '200':
+          description: A list of examples
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/ExampleDto.yml
+  /example/{exampleId}:
+    get:
+      operationId: findExampleById
+      description: find a example by id
+      parameters:
+        - name: exampleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Example
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/ExampleDto.yml
+        '404':
+          description: Example not found
+    delete:
+      operationId: deleteExampleById
+      description: Delete a example
+      parameters:
+        - name: exampleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Example deleted
+    put:
+      operationId: putExampleById
+      description: Create or update a example
+      parameters:
+        - name: exampleId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/ExampleDto.yml
+      responses:
+        '204':
+          description: Example created or updated

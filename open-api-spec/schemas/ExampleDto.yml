@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  exampleText:
+    type: string
+  exampleNumber:
+    type: number
+  exampleDate:
+    type: string
+    format: date
