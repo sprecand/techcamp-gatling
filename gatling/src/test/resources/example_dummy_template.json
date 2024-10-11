@@ -1,0 +1,6 @@
+{
+  "id": "#{id}",
+  "exampleText": "#{exampleText}",
+  "exampleNumber": #{exampleNumber},
+  "exampleDate": "#{exampleDate}"
+}
