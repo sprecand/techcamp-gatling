@@ -1,6 +1,8 @@
 package ch.techcamp.gatling_backend.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 
 import ch.techcamp.gatling_backend.domain.Example;
@@ -12,6 +14,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExampleService {
     private final ExampleRepository exampleRepository;
     private final ExampleMapper exampleMapper;
@@ -35,5 +38,6 @@ public class ExampleService {
     public void saveOrUpdate(String id, Example example) {
         example.setId(UUID.fromString(id));
         exampleRepository.save(exampleMapper.toEntity(example));
+        log.info("Saved or updated Example with id {}", id);
     }
 }

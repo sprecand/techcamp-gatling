@@ -12,5 +12,4 @@ class GatlingBackendApplicationTests {
 	void contextLoads() {
 		assertEquals(2,1+1);
 	}
-
 }
