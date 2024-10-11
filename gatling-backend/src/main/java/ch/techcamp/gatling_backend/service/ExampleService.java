@@ -35,6 +35,10 @@ public class ExampleService {
         .toList();
     }
 
+    public void deleteAll() {
+        exampleRepository.deleteAll();
+    }
+
     public void saveOrUpdate(String id, Example example) {
         example.setId(UUID.fromString(id));
         exampleRepository.save(exampleMapper.toEntity(example));

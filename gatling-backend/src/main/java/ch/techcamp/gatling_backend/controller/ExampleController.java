@@ -17,6 +17,12 @@ public class ExampleController implements ExampleApi {
     private final ExampleMapper exampleMapper;
 
     @Override
+    public ResponseEntity<Void> _deleteAll() {
+        exampleService.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
     public ResponseEntity<Void> _deleteExampleById(String exampleId) {
         exampleService.deleteExample(exampleId);
         return ResponseEntity.noContent().build();
@@ -27,7 +33,7 @@ public class ExampleController implements ExampleApi {
         return exampleService.findById(exampleId)
             .map(exampleMapper::toDto) 
             .map(ResponseEntity::ok)
-            .orElseGet(() -> ResponseEntity.noContent().build());
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override

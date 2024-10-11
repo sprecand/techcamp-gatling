@@ -19,6 +19,14 @@ paths:
                 type: array
                 items:
                   $ref: ./schemas/ExampleDto.yml
+    delete:
+      operationId: deleteAll
+      description: delete all examples
+      responses:
+        '204':
+          description:
+            All examples deleted
+
   /example/{exampleId}:
     get:
       operationId: findExampleById
