@@ -66,19 +66,20 @@ public class TransactionalSimulation extends Simulation {
 
     private void runSimulation() {
         ScenarioBuilder putToDB = scenario("One-time Setup Put Request")
-            .feed(listFeeder(feederData))
+        .repeat(feederData.size()).on(
+            feed(listFeeder(feederData))
             .exec(
                 http("Setup Put Request")
                     .put("/example/#{id}")
                     .body(StringBody("#{exampleJson}"))
                     .check(status().is(204))
-            );
-
+            )
+        );
         
         ScenarioBuilder getLinkedListReadOnly = scenario("Get linked List with transactional read only")
             .feed(listFeeder(feederData))
             .exec(
-                http("Get Request")
+                http("Get Request Read Only")
                     .get("/transactional/#{id}?readOnly=true")
                     .check(status().is(200))
             );
