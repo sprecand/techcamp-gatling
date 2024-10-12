@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import ch.techcamp.gatling_backend.domain.Example;
 import ch.techcamp.gatling_backend.repository.ExampleRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +20,14 @@ public class ExampleService {
     private final ExampleRepository exampleRepository;
     private final ExampleMapper exampleMapper;
 
+    @Transactional
     public void deleteExample(String id) {
         exampleRepository.deleteById(UUID.fromString(id));
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            log.info("Delete-Transaction Interrupted - UUID: %s".formatted(id));
+        }
     }
 
     public Optional<Example> findById(String id) {
@@ -39,9 +46,15 @@ public class ExampleService {
         exampleRepository.deleteAll();
     }
 
+    @Transactional
     public void saveOrUpdate(String id, Example example) {
         example.setId(UUID.fromString(id));
         exampleRepository.save(exampleMapper.toEntity(example));
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            log.info("Save-Transaction Interrupted - UUID: %s".formatted(example.getId()));
+        }
         log.info("Saved or updated Example with id {}", id);
     }
 }
