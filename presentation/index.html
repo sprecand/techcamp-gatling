@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Load Testing</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/league.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <style>
+        .fragment.strikethrough {
+            text-decoration: none;
+        }
+
+        .fragment.strikethrough.visible {
+            text-decoration: line-through;
+        }
+
+        .make-it-pop {
+            filter: drop-shadow(0 0 10px purple);
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Load Testing</h1>
+            <h2 class="fragment custom strikethrough">with JMeter</h2>
+            <h2 class="fragment custom strikethrough">with Gatling</h2>
+            <h2 class="fragment highlight-current-green">with k6</h2>
+        </section>
+
+        <!-- JMeter part -->
+        <section>
+            <h1>JMeter</h1>
+            <img class="r-stretch" src="assets/jmeter.jpeg">
+            <p>Source:Dall-E (Prompt: «Old lady sitting in an armchair, having a cup of tea and putting stamps on a huge
+                pile of letters»)</p>
+        </section>
+        <section>
+            <a href="https://jmeter.apache.org/">https://jmeter.apache.org/</a>
+            <ul>
+                <li>Grand Old Lady of Load Testing: Apache Open-Source Projekt, lange gewachsen mit grosser Community,
+                    viele Plugins etc
+                </li>
+                <li>Standalone Applikation, kein Maven Plugin o.Ä., keine CI/CD Integration</li>
+                <li>nicht nur für Java verwendbar</li>
+                <li>Load testing mit UI (ist in Swift geschrieben => Look&Feel nicht State of the Art)</li>
+                <li>‘Headless Mode’ verfügbar (CLI)</li>
+                <li>Output: XML (versionierbar)</li>
+                <li>Beschränkte Möglichkeit für Scripting</li>
+                <li>Unterstützt viele Protokolle, wie FTP, SOAP, HTTP, etc</li>
+            </ul>
+        </section>
+        <section>
+            <img data-class="r-stretch" src="assets/jmeter-screenshot.png">
+        </section>
+
+        <!-- Gatling Part -->
+        <section data-background-image="assets/gatling-gun.jpg">
+            <h1 class="r-fit-text">Gatling FTW?</h1>
+        </section>
+        <section data-background-gradient="radial-gradient(#283b95, #17b2c3)">
+            <p></p><a href="https://gatling.io/">https://gatling.io/</a></p>
+            <ul>
+                <li class="fragment">Load Testing as Code</li>
+                <li class="fragment">integrations</li>
+                <li class="fragment">reporting as HTML</li>
+            </ul>
+        </section>
+        <section data-background-gradient="radial-gradient(#283b95, #17b2c3)"
+                 data-markdown="gatling-test.md"
+        ></section>
+        <section data-background-gradient="radial-gradient(#283b95, #17b2c3)">
+            <img src="assets/screenshot-gatling.png">
+        </section>
+        <section data-background-gradient="radial-gradient(#283b95, #17b2c3)">
+            <h2>Gatling Enterprise</h2>
+            <ul>
+                <li>Cloud offering (Load Testing as a Service)</li>
+                <li>Requests von verschiedenen Locations möglich</li>
+                <li>Trends möglich --> Regressionstests</li>
+            </ul>
+        </section>
+        <section data-background-gradient="radial-gradient(#283b95, #17b2c3)">
+            <img src="assets/screenshot_gatling_cloud.png">
+        </section>
+
+        <!-- k6 part -->
+        <section data-background-image="assets/k6-gun.webp">
+            <h1 class="r-fit-text">K6? Chame das ässe?</h1>
+        </section>
+        <section data-background-gradient="linear-gradient(to bottom, #4D8E06FF, #A7B69EFF)">
+            <p><a href="https://grafana.com/docs/k6">https://grafana.com/docs/k6</a></p>
+            <ul>
+                <li>Tests as Code (JS, experimental TS) (Parallel users implemented in Golang (Goroutines))</li>
+                <li>Much more performant than frameworks running on the jvm</li>
+                <li>Detaillierte Scenarios (ramp-up, etc…) möglich</li>
+                <li>Verschiedene Outputformate (JSON, CSV, Kafka, TimeSeries in InfluxDB, etc…)</li>
+                <li>Test gegen SLO möglich (z.B. “99% der Requests dauern weniger als 10ms”)</li>
+                <li>Viele built-in metrics, Custom Metrics möglich</li>
+                <li>Regressionstests mit Trends möglich</li>
+                <li>Gut dokumentiert mit vielen Examples</li>
+                <li>*aaS möglich (Grafana Cloud K6)</li>
+                <li>Lokal ist ein Umweg über eine unterstützte Datasource (zB InfluxDB) nötig</li>
+                <li>Debugging nicht möglich, unterstützt nur modernere Standards (kein Support für FTP o.Ä.)</li>
+            </ul>
+        </section>
+
+        <section data-background-gradient="linear-gradient(to bottom, #4D8E06FF, #A7B69EFF)"
+                  data-markdown="k6-test.md"
+        ></section>
+        <section data-background-gradient="linear-gradient(to bottom, #4D8E06FF, #A7B69EFF)">
+            <img src="assets/screenshot-k6.png">
+        </section>
+
+        <section data-background-gradient="linear-gradient(to bottom, #4D8E06FF, #A7B69EFF)">
+            <h2>Grafana Cloud K6</h2>
+            <ul>
+                <li>Entweder local execution streamed in die cloud oder direkt cloud execution</li>
+                <li>Cloud execution scheduled, fully customizable mit der AWS region von wo man die execution starten
+                    will
+                </li>
+                <li>Gibt insights über failure rates und best practices beim Aufbau der test cases (KI-Unterstützung)
+                </li>
+                <li>K6 Test Builder ist nur verfügbar über Grafana Cloud (zusammenklicken von test cases statt js
+                    code)
+                </li>
+            </ul>
+        </section>
+        <section data-background-gradient="linear-gradient(to bottom, #4D8E06FF, #A7B69EFF)">
+            <p>this presentation was made with</p>
+            <img class="r-stretch" src="assets/revealjs.svg">
+            <p><a href="https://revealjs.com/">https://revealjs.com/</a></p>
+            <p>(Projektidee für nächstes TechCamp: ipt-Slides mit RevealJS?)</p>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
+</html>
