@@ -10,3 +10,9 @@ properties:
   exampleDate:
     type: string
     format: date
+  parentId:
+    type: string
+    format: uuid
+  childId:
+    type: string
+    format: uuid

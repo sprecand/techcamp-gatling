@@ -6,8 +6,6 @@ import static io.gatling.javaapi.http.HttpDsl.*;
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class ExampleSimulation extends Simulation {
     HttpProtocolBuilder httpProtocol = http.baseUrl("http://localhost:8080").acceptHeader("application/json");
 

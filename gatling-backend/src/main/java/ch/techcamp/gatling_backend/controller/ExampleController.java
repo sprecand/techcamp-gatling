@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ExampleController implements ExampleApi {
-      private final ExampleService exampleService;
+    private final ExampleService exampleService;
     private final ExampleMapper exampleMapper;
 
     @Override
@@ -38,6 +38,12 @@ public class ExampleController implements ExampleApi {
     @Override
     public ResponseEntity<Void> _putExampleById(String exampleId, ExampleDto exampleDto) {
         exampleService.saveOrUpdate(exampleId, exampleMapper.toDomain(exampleDto));
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> _deleteAllExample() {
+        exampleService.deleteAllExample();
         return ResponseEntity.noContent().build();
     }
 }
