@@ -19,6 +19,12 @@ paths:
                 type: array
                 items:
                   $ref: ./schemas/ExampleDto.yml
+    delete:
+      operationId: deleteAllExample
+      description: Delete all examples
+      responses:
+        '204':
+          description: Examples deleted
   /example/{exampleId}:
     get:
       operationId: findExampleById
@@ -68,3 +74,29 @@ paths:
       responses:
         '204':
           description: Example created or updated
+  /transactional/{exampleId}:
+    get:
+        operationId: findExampleListById
+        description: find a example list
+        parameters:
+          - name: exampleId
+            in: path
+            required: true
+            schema:
+              type: string
+          - name: readOnly
+            in: query
+            required: false
+            schema:
+              type: boolean
+        responses:
+          '200':
+            description: Example
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: ./schemas/ExampleDto.yml
+          '404':
+            description: Example not found

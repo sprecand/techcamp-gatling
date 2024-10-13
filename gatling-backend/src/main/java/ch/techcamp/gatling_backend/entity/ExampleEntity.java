@@ -21,4 +21,6 @@ public class ExampleEntity {
     private int exampleNumber;
     
     private LocalDate exampleDate;
+    private UUID parentId;
+    private UUID childId;
 }

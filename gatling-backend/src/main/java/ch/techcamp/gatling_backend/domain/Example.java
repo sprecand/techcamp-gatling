@@ -13,4 +13,6 @@ public class Example {
     String exampleText;
     int exampleNumber;
     LocalDate exampleDate;
+    UUID parentId;
+    UUID childId;
 }

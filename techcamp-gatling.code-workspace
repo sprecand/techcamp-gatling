@@ -1,0 +1,17 @@
+{
+	"folders": [
+	  { "path": "." },
+	  { "path": "gatling" },
+	  { "path": "gatling-backend" },
+	  { "path": "open-api-spec" }
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.configuration.runtimes": [
+		{
+		  "name": "JavaSE-21",
+		  "path": "/usr/lib/jvm/java-21-openjdk"
+		}
+	  ]
+	}
+}

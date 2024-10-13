@@ -17,7 +17,9 @@ public class ExampleMapper {
         .setId(exampleDto.getId())
         .setExampleText(exampleDto.getExampleText())
         .setExampleNumber(exampleDto.getExampleNumber().intValue())
-        .setExampleDate(exampleDto.getExampleDate());
+        .setExampleDate(exampleDto.getExampleDate())
+        .setParentId(exampleDto.getParentId())
+        .setChildId(exampleDto.getChildId());
     }
 
     public Example toDomain(ExampleEntity exampleEntity){
@@ -25,7 +27,9 @@ public class ExampleMapper {
         .setId(exampleEntity.getId())
         .setExampleText(exampleEntity.getExampleText())
         .setExampleNumber(exampleEntity.getExampleNumber())
-        .setExampleDate(exampleEntity.getExampleDate());
+        .setExampleDate(exampleEntity.getExampleDate())
+        .setParentId(exampleEntity.getParentId())
+        .setChildId(exampleEntity.getChildId());
     }
 
     public ExampleEntity toEntity(Example example){
@@ -33,7 +37,9 @@ public class ExampleMapper {
         .setId(example.getId())
         .setExampleText(example.getExampleText())
         .setExampleNumber(example.getExampleNumber())
-        .setExampleDate(example.getExampleDate());
+        .setExampleDate(example.getExampleDate())
+        .setParentId(example.getParentId())
+        .setChildId(example.getChildId());
     }
 
     public List<ExampleDto> toDtoList(List<Example> exampleList) {
@@ -47,6 +53,8 @@ public class ExampleMapper {
         .id(example.getId())
         .exampleText(example.getExampleText())
         .exampleNumber(BigDecimal.valueOf(example.getExampleNumber()))
-        .exampleDate(example.getExampleDate());
+        .exampleDate(example.getExampleDate())
+        .parentId(example.getParentId())
+        .childId(example.getChildId());
     }
 }
